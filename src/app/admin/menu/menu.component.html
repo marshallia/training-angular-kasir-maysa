@@ -1,0 +1,53 @@
+<header>
+    <button class="navbar-brand" (click)="logout()">Logout</button>
+</header>
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <button routerLink="/bill" [state]="orderList">Checkout</button>
+            <div *ngFor="let order of orderList">
+                <div class="row">{{order.name}}</div>
+                <div class="row">
+                    <div class="col-8"> {{order.price}} x {{order.quantity}} </div>
+                    <div class="col-4">{{order.price*order.quantity}} </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button (click)="remove(order.menu_id)">Remove</button>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="increase(order.menu_id)">Remove</button>
+                        <button (click)="decrease(order.menu_id)">Remove</button>
+                    </div>
+                </div>
+             </div>
+            <div class="row">
+                {{totalPrice}}
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div>
+                <button class="btn btn-primary btn-outline-white col" (click)="filter('Ice')">Iced</button>
+                <button class="btn btn-primary btn-outline-white col" (click)="filter('Hot')">Hot</button>
+                <button class="btn btn-primary btn-outline-white col" (click)="filter('Food')">Food</button>
+            </div>
+            <div class="card-deck">
+                <div *ngFor="let menu of menuList">
+                    <div class="card">
+                        <img class="card-img-top gmb" src="{{menu.photo}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title"><a>{{menu.name}}</a></h4>
+                            <p class="card-text">{{menu.price|currency}}</p>
+                            <a href="#" (click)="addCart(menu.id)" class="btn btn-primary">Add to Card</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<footer class="container-fluid">
+    <p>Maysa</p>
+</footer>
